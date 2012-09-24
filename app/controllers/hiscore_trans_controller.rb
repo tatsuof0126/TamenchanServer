@@ -66,7 +66,7 @@ class HiscoreTransController < ApplicationController
   end
 
   def gethiscorelist
-    hiscorelist = Hiscore.find(:all, :order => 'score desc, id', :limit => '5' )
+    hiscorelist = Hiscore.find(:all, :order => 'score desc, id', :limit => '20' )
     
     num = 1
     rank = 1
