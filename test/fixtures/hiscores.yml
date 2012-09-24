@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  score: 1
+  rank: 1
+  devid: MyString
+  achieved_date: 2012-09-03 22:34:28
+
+two:
+  name: MyString
+  score: 1
+  rank: 1
+  devid: MyString
+  achieved_date: 2012-09-03 22:34:28

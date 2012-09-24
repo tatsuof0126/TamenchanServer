@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @hiscore.name %>
+</p>
+
+<p>
+  <b>Score:</b>
+  <%= @hiscore.score %>
+</p>
+
+<p>
+  <b>Rank:</b>
+  <%= @hiscore.rank %>
+</p>
+
+<p>
+  <b>Devid:</b>
+  <%= @hiscore.devid %>
+</p>
+
+<p>
+  <b>Achieved date:</b>
+  <%= @hiscore.achieved_date %>
+</p>
+
+
+<%= link_to 'Edit', edit_hiscore_path(@hiscore) %> |
+<%= link_to 'Back', hiscores_path %>

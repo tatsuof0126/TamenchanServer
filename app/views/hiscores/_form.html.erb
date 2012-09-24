@@ -1,0 +1,37 @@
+<%= form_for(@hiscore) do |f| %>
+  <% if @hiscore.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@hiscore.errors.count, "error") %> prohibited this hiscore from being saved:</h2>
+
+      <ul>
+      <% @hiscore.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :score %><br />
+    <%= f.number_field :score %>
+  </div>
+  <div class="field">
+    <%= f.label :rank %><br />
+    <%= f.number_field :rank %>
+  </div>
+  <div class="field">
+    <%= f.label :devid %><br />
+    <%= f.text_field :devid %>
+  </div>
+  <div class="field">
+    <%= f.label :achieved_date %><br />
+    <%= f.datetime_select :achieved_date %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
