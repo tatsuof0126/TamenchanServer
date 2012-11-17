@@ -2,6 +2,7 @@
 
 <table>
   <tr>
+    <th>Level</th>
     <th>Name</th>
     <th>Score</th>
     <th>Rank</th>
@@ -15,6 +16,7 @@
 
 <% @hiscores.each do |hiscore| %>
   <tr>
+    <td><%= hiscore.gamelevel %></td>
     <td><%= hiscore.name %></td>
     <td><%= hiscore.score %></td>
     <td><%= hiscore.rank %></td>

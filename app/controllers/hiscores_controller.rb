@@ -7,7 +7,7 @@ class HiscoresController < ApplicationController
     if sort == "created"
       @hiscores = Hiscore.find(:all, :order => 'created_at desc')
     elsif 
-      @hiscores = Hiscore.find(:all, :order => 'score desc, id')
+      @hiscores = Hiscore.find(:all, :order => 'gamelevel, score desc, id')
     end
     
     respond_to do |format|
