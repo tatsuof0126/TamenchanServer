@@ -5,6 +5,11 @@ class HiscoreTransController < ApplicationController
   end
 
   def create
+    gamelevel = params[:gamelevel]
+    if gamelevel == nil
+      gamelevel = 1
+    end
+    
     id = []
     devid = []
     name = []
@@ -47,14 +52,18 @@ class HiscoreTransController < ApplicationController
       
       if id[i] != nil
         hiscore[i].id = id[i]
+      elsif
+        id[i] = 0; #ダミーID
       end
       
       hiscore[i].devid = devid[i]
       hiscore[i].name = name[i]
       hiscore[i].score = score[i]
       hiscore[i].achieved_date = date[i]
-                
-      hiscorelist = Hiscore.find(:all, :conditions => ["score > :score", {:score => score[i]}])
+      hiscore[i].gamelevel = gamelevel
+      
+      hiscorelist = Hiscore.find(:all, 
+        :conditions => ["gamelevel = ? and score >= ? and id <> ?", gamelevel, score[i], id[i]])
       hiscore[i].rank = hiscorelist.length+1
         
       if hiscore[i].id == nil
@@ -66,7 +75,13 @@ class HiscoreTransController < ApplicationController
   end
 
   def gethiscorelist
-    hiscorelist = Hiscore.find(:all, :order => 'score desc, id', :limit => '20' )
+    gamelevel = params[:gamelevel]
+    if gamelevel == nil
+      gamelevel = 1
+    end
+    
+    hiscorelist = Hiscore.find(:all,
+      :conditions => { :gamelevel => gamelevel }, :order => 'score desc, id', :limit => '20' )
     
     num = 1
     rank = 1

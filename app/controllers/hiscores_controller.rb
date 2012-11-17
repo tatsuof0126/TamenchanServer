@@ -3,7 +3,12 @@ class HiscoresController < ApplicationController
   # GET /hiscores.json
   def index
 #    @hiscores = Hiscore.all
-    @hiscores = Hiscore.find(:all, :order => 'score desc, id')
+    sort = params[:sort]
+    if sort == "created"
+      @hiscores = Hiscore.find(:all, :order => 'created_at desc')
+    elsif 
+      @hiscores = Hiscore.find(:all, :order => 'score desc, id')
+    end
     
     respond_to do |format|
       format.html # index.html.erb

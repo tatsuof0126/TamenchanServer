@@ -7,6 +7,7 @@
     <th>Rank</th>
     <th>Devid</th>
     <th>Achieved date</th>
+    <th>Created date</th>
     <th></th>
     <th></th>
     <th></th>
@@ -19,6 +20,7 @@
     <td><%= hiscore.rank %></td>
     <td><%= hiscore.devid %></td>
     <td><%= hiscore.achieved_date %></td>
+    <td><%= hiscore.created_at %></td>
     <td><%= link_to 'Show', hiscore %></td>
     <td><%= link_to 'Edit', edit_hiscore_path(hiscore) %></td>
     <td><%= link_to 'Destroy', hiscore, method: :delete, data: { confirm: 'Are you sure?' } %></td>
