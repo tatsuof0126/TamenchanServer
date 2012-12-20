@@ -1,3 +1,52 @@
 // Place all the styles related to the hiscores controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+table.hiscoretable {
+  border-collapse: collapse;
+}
+
+th {
+  background-color: #99FF99;
+}
+
+th,td {
+  border: solid 1px #666666;
+  padding: 2px 5px;
+}
+
+th.rank {
+  width: 40px;
+  text-align: center;
+}
+
+th.name {
+  width: 140px;  
+  text-align: center;
+}
+
+th.score {
+  width: 40px;  
+  text-align: center;
+}
+
+th.date {
+  width: 100px;  
+  text-align: center;
+}
+
+td.rank {
+  text-align: center;
+}
+
+td.name {
+  text-align: left;
+}
+
+td.score {
+  text-align: right;
+}
+
+td.date {
+  text-align: left;
+}

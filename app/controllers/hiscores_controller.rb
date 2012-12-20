@@ -1,4 +1,41 @@
 class HiscoresController < ApplicationController
+
+  def publicindex
+    @hiscores_easy = Hiscore.find(:all,
+      :conditions => { :gamelevel => 0 }, :order => 'score desc, id', :limit => '50' )
+    
+    @hiscores_normal = Hiscore.find(:all,
+      :conditions => { :gamelevel => 1 }, :order => 'score desc, id', :limit => '50' )
+    
+    @hiscores_hard = Hiscore.find(:all,
+      :conditions => { :gamelevel => 2 }, :order => 'score desc, id', :limit => '50' )
+    
+    calcrank(@hiscores_easy)
+    calcrank(@hiscores_normal)
+    calcrank(@hiscores_hard)
+  end
+  
+  def calcrank(hiscorelist)
+    num = 1
+    rank = 1
+    score = 0
+    
+    for hiscore in hiscorelist do
+      if hiscore.score == score 
+        hiscore.rank = rank
+      else 
+        hiscore.rank = num
+        rank = num
+        score = hiscore.score
+      end
+      num += 1
+    end
+    
+    return hiscorelist
+  end
+
+
+
   # GET /hiscores
   # GET /hiscores.json
   def index
@@ -15,6 +52,7 @@ class HiscoresController < ApplicationController
       format.json { render json: @hiscores }
     end
   end
+  
 
   # GET /hiscores/1
   # GET /hiscores/1.json

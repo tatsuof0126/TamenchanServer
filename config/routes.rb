@@ -6,6 +6,9 @@ TamenchanServer::Application.routes.draw do
 
   post 'hiscorelist' => 'hiscore_trans#create'
   
+  
+  root :to => 'hiscores#publicindex'
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
