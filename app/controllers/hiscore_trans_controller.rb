@@ -1,5 +1,8 @@
 class HiscoreTransController < ApplicationController
 
+  RANKING_NUM = 50 #ランキング表示する数
+  OUT_OF_RANKING = 99999
+  
   def index
     render json: gethiscorelist
   end
@@ -63,11 +66,16 @@ class HiscoreTransController < ApplicationController
       hiscore[i].gamelevel = gamelevel
       
       hiscorelist = Hiscore.find(:all, 
-        :conditions => ["gamelevel = ? and score >= ? and id <> ?", gamelevel, score[i], id[i]])
-      hiscore[i].rank = hiscorelist.length+1
-        
+        :conditions => ["gamelevel = ? and score > ? and id <> ?", gamelevel, score[i], id[i]])
+      hiscore[i].rank = hiscorelist.length + 1
+      
       if hiscore[i].id == nil
         hiscore[i].save
+      end
+      
+      # 順位がランキング数より下なら、ランキング外の順位を返す（保存後に行う）
+      if hiscore[i].rank > RANKING_NUM
+        hiscore[i].rank = OUT_OF_RANKING
       end
     end
 
@@ -81,7 +89,7 @@ class HiscoreTransController < ApplicationController
     end
     
     hiscorelist = Hiscore.find(:all,
-      :conditions => { :gamelevel => gamelevel }, :order => 'score desc, id', :limit => '20' )
+      :conditions => { :gamelevel => gamelevel }, :order => 'score desc, id', :limit => RANKING_NUM )
     
     num = 1
     rank = 1
